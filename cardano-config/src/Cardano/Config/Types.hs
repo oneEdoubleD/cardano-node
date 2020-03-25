@@ -66,6 +66,7 @@ data CBORObject = CBORBlockByron
                 | CBORDelegationCertificateByron
                 | CBORTxByron
                 | CBORUpdateProposalByron
+                | CBORVoteByron
                 deriving Show
 
 --------------------------------------------------------------------------------
