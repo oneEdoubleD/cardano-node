@@ -308,7 +308,9 @@ Block number: 5
 
 ## Update proposals
 
-There is currently only support to create a Byron update proposal:
+### Update proposal creation
+
+A Byron update proposal can be created as follows:
 
 ```
 cardano-cli -- byron
@@ -333,7 +335,9 @@ You can also check your proposal's validity using the [`validate-cbor`](#validat
 
 See the [Byron specification](https://hydra.iohk.io/job/Cardano/cardano-ledger-specs/byronLedgerSpec/latest/download-by-type/doc-pdf/ledger-spec) for more details on update proposals.
 
-You can submit your proposal using the `byron submit-update-proposal` command.
+### Update proposal submission
+
+You can submit your proposal using the `submit-byron-update-proposal` command.
 
 Example:
 ```
@@ -346,6 +350,12 @@ cardano-cli -- byron
 The socket path  must either be specified as an argument (`--socket-path`) or specified in the supplied config file.
 
 See the [Byron specification](https://hydra.iohk.io/job/Cardano/cardano-ledger-specs/byronLedgerSpec/latest/download-by-type/doc-pdf/ledger-spec) for more deatils on update proposals.
+
+
+## Update proposal voting
+
+You can create a byron update proposal vote with the following:
+
 
 
 # Development
