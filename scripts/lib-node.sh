@@ -25,7 +25,7 @@ USAGE="
 
 ## Defaults
 
-default_node_config='mainnet'
+default_node_config='byron-mainnet'
 default_node_port=7776
 
 ## Running node setups

@@ -36,5 +36,5 @@ do case "$1" in
            --app-help ) app_usage; exit 1;;
            * ) break;; esac; shift; done
 
-run_node --config-name 'mainnet' \
+run_node --config-name 'byron_mainnet' \
   "$@"
