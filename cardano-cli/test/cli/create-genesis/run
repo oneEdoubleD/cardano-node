@@ -1,0 +1,39 @@
+#!/bin/sh -eu
+
+cwd=$(dirname "$0")
+
+# shellcheck source=/dev/null
+. "${cwd}/../core/common"
+
+# shellcheck disable=SC2154
+banner "${testname}"
+
+OUTPUT_DIR="${TEST}"
+OUTPUT_JSON="${TEST}/genesis.json"
+
+start_time=$(TZ=UTC date --iso-8601=seconds | sed 's/+.*/Z/')
+
+mkdir -p "${OUTPUT_DIR}"
+cp "${cwd}/data/genesis.spec.json" "${OUTPUT_DIR}/"
+
+# Random number for the supply.
+supply=$(head -100 /dev/urandom | cksum | sed 's/ .*//')
+
+${CARDANO_CLI} shelley create-genesis \
+    --genesis-dir "${OUTPUT_DIR}/" \
+    --start-time "${start_time}" \
+    --supply "${supply}" \
+    > /dev/null
+error=$?
+
+check_supply=$(grep MaxLovelaceSupply "${OUTPUT_JSON}" | sed "s/${supply}/correct/;s/[ \"]//g")
+if test "${check_supply}" != "MaxLovelaceSupply:correct," ; then
+	error=1
+	fi
+
+check_start_time=$(grep StartTime "${OUTPUT_JSON}" | sed "s/${start_time}/correct/;s/[ \"]//g")
+if test "${check_start_time}" != "StartTime:correct," ; then
+	error=1
+	fi
+
+report_result ${error}
